@@ -1,0 +1,14 @@
+﻿{
+  "version": 1,
+  "routes": [
+    {
+      "src": "/api/translate",
+      "dest": "/api/translate.js",
+      "methods": ["POST", "OPTIONS"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ]
+}
