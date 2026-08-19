@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remboursement - Coran Traduction</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .refund-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .refund-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .refund-header h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .refund-header h1 i {
+            color: #3498db;
+        }
+        .refund-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .refund-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        .refund-section h2 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        .refund-section h2 i {
+            color: #3498db;
+            margin-right: 10px;
+        }
+        .refund-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .refund-section ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #555;
+        }
+        .refund-section ul li:last-child {
+            border-bottom: none;
+        }
+        .refund-section ul li i {
+            color: #3498db;
+            font-size: 1.2rem;
+            min-width: 25px;
+        }
+        .refund-section ul li .icon-success {
+            color: #2ecc71;
+        }
+        .refund-section ul li .icon-info {
+            color: #3498db;
+        }
+        .refund-section .highlight {
+            color: #3498db;
+            font-weight: 600;
+        }
+        .refund-section .highlight-warning {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        .contact-box {
+            background: #e8f4fd;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .contact-box a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+        .contact-box i {
+            color: #3498db;
+        }
+        .btn-back {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .btn-back:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+        .info-note {
+            padding: 15px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 8px;
+            color: #856404;
+            margin: 15px 0;
+        }
+        .info-note i {
+            margin-right: 10px;
+        }
+        @media (max-width: 600px) {
+            .refund-container { margin: 15px; padding: 20px; }
+            .refund-header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <a href="index.html" class="header-logo">
+            <span class="logo-icon"><i class="fas fa-quran"></i></span>
+            <span class="logo-text">Coran Traduction</span>
+        </a>
+        <nav class="header-nav" id="headerNav">
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="reader.html" class="nav-link"><i class="fas fa-book-open"></i> Lire le Coran</a></li>
+                <li><a href="premium.html" class="nav-link premium-link"><i class="fas fa-crown"></i> Premium</a></li>
+                <li><a href="donate.html" class="nav-link donate-link"><i class="fas fa-heart"></i> Don</a></li>
+                <li><a href="login.html" class="nav-link"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                <li><a href="register.html" class="nav-link btn-register"><i class="fas fa-user-plus"></i> Inscription</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+    </div>
+</header>
+
+<main>
+    <div class="refund-container">
+        <div class="refund-header">
+            <h1><i class="fas fa-undo-alt"></i> Remboursement</h1>
+            <p>Politique de remboursement pour les abonnements Premium</p>
+        </div>
+
+        <div class="info-note">
+            <i class="fas fa-info-circle"></i>
+            Cette politique s'applique uniquement aux abonnements Premium.
+        </div>
+
+        <!-- Conditions de remboursement -->
+        <div class="refund-section">
+            <h2><i class="fas fa-check-circle icon-success"></i> Conditions de remboursement</h2>
+            <ul>
+                <li>
+                    <i class="fas fa-calendar-check icon-success"></i>
+                    <span><strong>Remboursement intégral</strong> sous <span class="highlight">14 jours</span> suivant l'achat</span>
+                </li>
+                <li>
+                    <i class="fas fa-envelope icon-info"></i>
+                    <span>Contactez-nous à : <a href="mailto:refund@coran-traduction.com">refund@coran-traduction.com</a></span>
+                </li>
+                <li>
+                    <i class="fas fa-clock icon-info"></i>
+                    <span>Le remboursement sera effectué sous <span class="highlight">7 jours ouvrables</span></span>
+                </li>
+                <li>
+                    <i class="fas fa-credit-card icon-info"></i>
+                    <span>Le remboursement se fera sur le mode de paiement utilisé</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Procédure -->
+        <div class="refund-section">
+            <h2><i class="fas fa-list"></i> Procédure de remboursement</h2>
+            <ul>
+                <li>
+                    <i class="fas fa-envelope icon-info"></i>
+                    <span>Envoyez un email à <a href="mailto:refund@coran-traduction.com">refund@coran-traduction.com</a></span>
+                </li>
+                <li>
+                    <i class="fas fa-info-circle icon-info"></i>
+                    <span>Indiquez votre <strong>nom</strong>, <strong>email</strong> et <strong>ID de transaction</strong></span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle icon-success"></i>
+                    <span>Notre équipe traitera votre demande sous <strong>48h</strong></span>
+                </li>
+                <li>
+                    <i class="fas fa-undo-alt icon-success"></i>
+                    <span>Le remboursement sera effectué sous <strong>7 jours</strong></span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact-box">
+            <i class="fas fa-envelope" style="font-size: 2rem; display: block; margin-bottom: 10px;"></i>
+            <p style="color: #555; margin-bottom: 10px;">Une question sur votre remboursement ?</p>
+            <a href="mailto:refund@coran-traduction.com">
+                <i class="fas fa-paper-plane"></i> refund@coran-traduction.com
+            </a>
+        </div>
+
+        <!-- Bouton retour -->
+        <div style="text-align: center;">
+            <a href="index.html" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Retour à l'accueil
+            </a>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4><i class="fas fa-quran"></i> Coran Traduction</h4>
+                <p>Traduction du Saint Coran en 70 langues.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="reader.html"><i class="fas fa-book-open"></i> Lire le Coran</a></li>
+                    <li><a href="premium.html"><i class="fas fa-crown"></i> Premium</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Coran Traduction. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Menu mobile
+    document.getElementById('menuToggle')?.addEventListener('click', function() {
+        const nav = document.querySelector('.header-nav');
+        if (nav) nav.classList.toggle('active');
+    });
+
+    console.log(' Page de remboursement chargée');
+    console.log(' Politique : 14 jours de remboursement');
+</script>
+
+</body>
+</html>
+

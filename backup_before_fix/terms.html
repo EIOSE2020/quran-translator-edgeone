@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions d'utilisation - Coran Traduction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-container { max-width: 800px; margin: 60px auto; padding: 20px; }
+        .page-card { background: white; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); padding: 40px; }
+        .page-card h1 { text-align: center; color: #2c3e50; margin-bottom: 20px; }
+        .page-card p { color: #666; line-height: 1.8; }
+        .main-header { background: linear-gradient(135deg, #1a1a2e, #2c3e50); padding: 0; box-shadow: 0 2px 20px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 1.3rem; }
+        .header-logo .logo-text { background: linear-gradient(90deg, #3498db, #2ecc71); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-menu { display: flex; list-style: none; margin: 0; padding: 0; gap: 5px; align-items: center; flex-wrap: wrap; }
+        .nav-link { display: flex; align-items: center; gap: 6px; padding: 8px 16px; color: rgba(255,255,255,0.8); text-decoration: none; border-radius: 8px; transition: all 0.3s; font-size: 0.95rem; }
+        .nav-link:hover { color: white; background: rgba(255,255,255,0.1); }
+        .premium-link { background: linear-gradient(135deg, #f39c12, #e67e22); color: white !important; }
+        .btn-register { background: rgba(46,204,113,0.2); border: 2px solid #2ecc71; color: #2ecc71 !important; }
+        .btn-register:hover { background: #2ecc71; color: white !important; }
+        .donate-link { color: #f1c40f !important; }
+        .main-footer { background: linear-gradient(135deg, #1a1a2e, #2c3e50); color: #ecf0f1; padding: 60px 0 0; margin-top: 60px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: #fff; font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid rgba(52,152,219,0.3); }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #bdc3c7; text-decoration: none; transition: all 0.3s; }
+        .footer-links a:hover { color: #3498db; }
+        .footer-social { display: flex; gap: 12px; }
+        .footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; color: #ecf0f1; text-decoration: none; transition: all 0.3s; }
+        .footer-social a:hover { background: #3498db; transform: translateY(-3px); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; text-align: center; color: #95a5a6; font-size: 0.9rem; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 3px; }
+        @media (max-width: 768px) { .menu-toggle { display: flex; } .header-nav { display: none; } .nav-menu { flex-direction: column; } .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <a href="index.html" class="header-logo">
+            <span class="logo-icon"></span>
+            <span class="logo-text">Coran Traduction</span>
+        </a>
+        <nav class="header-nav">
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"> Accueil</a></li>
+                <li><a href="#" class="nav-link" onclick="loadSurah(1)"> Lire le Coran</a></li>
+                <li><a href="premium.html" class="nav-link premium-link"> Premium</a></li>
+                <li><a href="donate.html" class="nav-link donate-link"> Don</a></li>
+                <li><a href="login.html" class="nav-link"> Connexion</a></li>
+                <li><a href="register.html" class="nav-link btn-register"> Inscription</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle" id="menuToggle">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+    </div>
+</header>
+
+<main>
+    <div class="page-container">
+        <div class="page-card">
+            <h1>Conditions d'utilisation</h1>
+            <h3> Conditions d'utilisation</h3>
+<p>En utilisant cette application, vous acceptez les conditions suivantes :</p>
+<ul>
+    <li>Le contenu du Coran est pré©senté© é  titre informatif et spirituel.</li>
+    <li>L'utilisation est personnelle et non commerciale sauf accord pré©alable.</li>
+    <li>Les traductions sont fournies é  titre indicatif.</li>
+</ul>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4> Coran Traduction</h4>
+                <p>Traduction du Saint Coran en 15 langues.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"> Accueil</a></li>
+                    <li><a href="#" onclick="loadSurah(1)"> Lire le Coran</a></li>
+                    <li><a href="premium.html"> Premium</a></li>
+                    <li><a href="donate.html" style="color:#f1c40f;"> Faire un don</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Informations</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">à propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Lé©gal</h4>
+                <ul class="footer-links">
+                    <li><a href="terms.html">Conditions</a></li>
+                    <li><a href="privacy.html">Confidentialité©</a></li>
+                    <li><a href="refund.html">Remboursement</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p> 2026 Coran Traduction. Tous droits ré©servé©s.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('menuToggle')?.addEventListener('click', function() {
+        const nav = document.querySelector('.header-nav');
+        nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+    });
+    function loadSurah(n) { window.location.href = 'index.html?load=' + n; }
+    window.loadSurah = loadSurah;
+</script>
+</body>
+</html>

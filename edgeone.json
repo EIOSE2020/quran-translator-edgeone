@@ -1,0 +1,13 @@
+﻿{
+  "functions": {
+    "api/translate.js": {
+      "runtime": "nodejs22.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/translate",
+      "dest": "/api/translate.js"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+﻿# Robots.txt pour Coran Traduction - Al-Quran Translator
+User-agent: *
+Allow: /
+Disallow: /backup_before_fix/
+Disallow: /scripts/
+Disallow: /test_*.php
+Disallow: /test_*.html
+Disallow: /_headers
+Disallow: /_redirects
+
+Sitemap: https://www.alquaran-translator.zkenf.com/sitemap.xml
+
+# Temps de crawl
+Crawl-delay: 1
+
+# Google spécifique
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing spécifique
+User-agent: bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yahoo spécifique
+User-agent: Yahoo
+Allow: /
+Crawl-delay: 1
+
+# Yandex spécifique
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+
+

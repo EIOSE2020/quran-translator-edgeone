@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2629092811633095" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium - Coran Traduction</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .premium-container { max-width: 800px; margin: 60px auto; padding: 40px; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); text-align: center; }
+        .premium-container .icon { font-size: 4rem; margin-bottom: 20px; color: #f39c12; }
+        .premium-container h1 { color: #2c3e50; font-size: 2.5rem; margin-bottom: 10px; }
+        .premium-container h1 i { color: #f39c12; margin-right: 10px; }
+        .premium-container .subtitle { color: #666; font-size: 1.1rem; margin-bottom: 30px; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0; text-align: left; }
+        .feature { background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center; }
+        .feature .icon { font-size: 2rem; margin-bottom: 10px; color: #3498db; }
+        .feature h3 { color: #2c3e50; font-size: 1.1rem; }
+        .feature p { color: #666; font-size: 0.95rem; }
+        .price-box { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 10px; margin: 30px 0; }
+        .price-box .price { font-size: 3rem; font-weight: bold; }
+        .price-box .period { font-size: 1.2rem; opacity: 0.8; }
+        .price-box .description { margin-top: 10px; opacity: 0.9; }
+        .btn-subscribe { display: inline-block; padding: 15px 50px; background: white; color: #764ba2; border-radius: 30px; font-size: 1.2rem; font-weight: bold; text-decoration: none; transition: all 0.3s; }
+        .btn-subscribe:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .btn-cancel-premium { padding: 10px 30px; background: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; transition: all 0.3s; margin-top: 15px; }
+        .btn-cancel-premium:hover { background: #c0392b; transform: scale(1.05); }
+        .back-link { margin-top: 30px; }
+        .back-link a { color: #888; text-decoration: none; }
+        .back-link a:hover { color: #3498db; }
+        .page-navigation { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; margin-top: 20px; border-top: 2px solid #f0f0f0; gap: 15px; flex-wrap: wrap; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .page-navigation .nav-btn { padding: 10px 25px; background: white; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: #2c3e50; }
+        .page-navigation .nav-btn:hover { background: #3498db; color: white; border-color: #3498db; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(52,152,219,0.3); }
+        
+        @media (max-width: 480px) {
+            .premium-container { margin: 20px; padding: 25px; }
+            .features { grid-template-columns: 1fr; }
+            .page-navigation { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="premium-container">
+            <div class="icon"><i class="fas fa-crown"></i></div>
+            <h1><i class="fas fa-crown" style="color:#f39c12;"></i> Version Premium</h1>
+            <p class="subtitle">Améliorez votre expérience de lecture du Coran</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="icon"><i class="fas fa-ban" style="color:#e74c3c;"></i></div>
+                    <h3>Sans publicité</h3>
+                    <p>Profitez d'une lecture sans interruption</p>
+                </div>
+                <div class="feature">
+                    <div class="icon"><i class="fas fa-download" style="color:#2ecc71;"></i></div>
+                    <h3>Accès hors ligne</h3>
+                    <p>Lisez le Coran même sans connexion</p>
+                </div>
+                <div class="feature">
+                    <div class="icon"><i class="fas fa-headphones" style="color:#3498db;"></i></div>
+                    <h3>Audio intégré</h3>
+                    <p>Écoutez la récitation des versets</p>
+                </div>
+                <div class="feature">
+                    <div class="icon"><i class="fas fa-book-open" style="color:#9b59b6;"></i></div>
+                    <h3>Traductions multiples</h3>
+                    <p>Comparez plusieurs traductions</p>
+                </div>
+            </div>
+            
+            <div class="price-box">
+                <div class="price">5$</div>
+                <div class="period">/ mois</div>
+                <div class="description">Annulation à tout moment</div>
+            </div>
+            
+            <a href="#" class="btn-subscribe" onclick="handleSubscribe(event)"><i class="fas fa-crown"></i> S'abonner maintenant</a>
+            
+            <br>
+            <button class="btn-cancel-premium" onclick="cancelPremium()"><i class="fas fa-times-circle"></i> Désactiver Premium (test)</button>
+            
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+            </div>
+        </div>
+
+        <div class="page-navigation">
+            <a href="javascript:history.back()" class="nav-btn"><i class="fas fa-arrow-left"></i> Retour</a>
+            <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Accueil</a>
+            <a href="#" class="nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i> Haut</a>
+        </div>
+    </div>
+    
+    <script>
+        function handleSubscribe(event) {
+            event.preventDefault();
+            localStorage.setItem('isPremium', 'true');
+            alert('✅ Félicitations ! Vous êtes maintenant membre Premium.\n\n📌 Plus de publicités\n📌 Accès hors ligne\n📌 Audio intégré');
+            window.location.href = 'index.html';
+        }
+        
+        function cancelPremium() {
+            if (confirm('Voulez-vous vraiment désactiver le mode Premium ?')) {
+                localStorage.setItem('isPremium', 'false');
+                alert('✅ Premium désactivé. Vous verrez à nouveau les publicités.');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

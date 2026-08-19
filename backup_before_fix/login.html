@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Coran Traduction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .auth-page { max-width: 420px; margin: 60px auto; padding: 20px; }
+        .auth-card { background: white; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); padding: 40px; }
+        .auth-card h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; }
+        .auth-card h1 i { color: #3498db; margin-right: 10px; }
+        .auth-card .subtitle { text-align: center; color: #888; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; color: #2c3e50; margin-bottom: 5px; }
+        .form-group input { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; transition: all 0.3s; }
+        .form-group input:focus { border-color: #3498db; outline: none; }
+        .btn-auth { width: 100%; padding: 14px; background: linear-gradient(135deg, #3498db, #2980b9); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .btn-auth:hover { transform: scale(1.02); box-shadow: 0 5px 20px rgba(52,152,219,0.3); }
+        .auth-links { text-align: center; margin-top: 20px; color: #888; }
+        .auth-links a { color: #3498db; text-decoration: none; }
+        .auth-links a:hover { text-decoration: underline; }
+        .error-msg { color: #e74c3c; text-align: center; margin-top: 15px; display: none; }
+        .success-msg { color: #27ae60; text-align: center; margin-top: 15px; display: none; }
+        .demo-info { background: #f8f9fa; border-radius: 8px; padding: 15px; margin-top: 20px; font-size: 0.85rem; color: #666; }
+        .demo-info i { color: #f39c12; }
+        
+        /* Header/footer styles */
+        .main-header { background: linear-gradient(135deg, #1a1a2e, #2c3e50); padding: 0; box-shadow: 0 2px 20px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 1.3rem; }
+        .header-logo .logo-text { background: linear-gradient(90deg, #3498db, #2ecc71); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 3px; }
+        @media (max-width: 768px) { .menu-toggle { display: flex; } .header-nav { display: none; } }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="header-logo">
+                <span class="logo-icon"><i class="fas fa-quran"></i></span>
+                <span class="logo-text">Coran Traduction</span>
+            </a>
+        </div>
+    </header>
+    
+    <main>
+        <div class="auth-page">
+            <div class="auth-card">
+                <h1><i class="fas fa-sign-in-alt"></i> Connexion</h1>
+                <p class="subtitle">Accédez à votre compte</p>
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" placeholder="exemple@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Mot de passe</label>
+                        <input type="password" id="password" placeholder="Votre mot de passe" required>
+                    </div>
+                    <button type="submit" class="btn-auth"><i class="fas fa-sign-in-alt"></i> Se connecter</button>
+                    <div class="error-msg" id="errorMsg"><i class="fas fa-exclamation-circle"></i> Erreur</div>
+                    <div class="success-msg" id="successMsg"><i class="fas fa-check-circle"></i> Succès</div>
+                </form>
+                <div class="auth-links">
+                    <p>Pas encore de compte ? <a href="register.html">Inscrivez-vous</a></p>
+                </div>
+                <div class="demo-info">
+                    <i class="fas fa-info-circle"></i> <strong>Compte de démonstration :</strong><br>
+                    Email: <code>test@example.com</code><br>
+                    Mot de passe: <code>password123</code>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="js/auth.js"></script>
+    <script>
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            
+            // Utilisation de la fonction loginUser définie dans auth.js
+            if (typeof loginUser === 'function') {
+                const result = loginUser(email, password);
+                if (result.success) {
+                    successMsg.textContent = '✅ Connexion réussie ! Redirection...';
+                    successMsg.style.display = 'block';
+                    setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+                } else {
+                    errorMsg.textContent = '❌ ' + result.message;
+                    errorMsg.style.display = 'block';
+                }
+            } else {
+                // Fallback si auth.js n'est pas chargé
+                if (email === 'test@example.com' && password === 'password123') {
+                    successMsg.textContent = '✅ Connexion réussie ! Redirection...';
+                    successMsg.style.display = 'block';
+                    setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+                } else {
+                    errorMsg.textContent = '❌ Identifiants incorrects. Utilisez le compte de démonstration.';
+                    errorMsg.style.display = 'block';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

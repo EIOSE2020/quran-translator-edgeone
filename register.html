@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Coran Traduction</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .register-container {
+            max-width: 440px;
+            margin: 40px auto;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .register-container h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        .register-container .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+        }
+        .form-group input.error {
+            border-color: #e74c3c;
+        }
+        .form-group input.success {
+            border-color: #2ecc71;
+        }
+        .password-wrapper {
+            position: relative;
+        }
+        .password-wrapper input {
+            padding-right: 45px;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 5px;
+        }
+        .toggle-password:hover {
+            color: #3498db;
+        }
+        .password-requirements {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 5px;
+        }
+        .password-requirements li {
+            list-style: none;
+            padding: 2px 0;
+        }
+        .password-requirements li i {
+            margin-right: 5px;
+        }
+        .password-requirements li.valid {
+            color: #2ecc71;
+        }
+        .password-requirements li.invalid {
+            color: #e74c3c;
+        }
+        .btn-register {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-register:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(46,204,113,0.3);
+        }
+        .btn-register:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+        .login-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            background: #fee;
+            color: #e74c3c;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+            border-left: 4px solid #e74c3c;
+            font-size: 0.9rem;
+        }
+        .success-message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+            border-left: 4px solid #2ecc71;
+            font-size: 0.9rem;
+        }
+        .password-match-error {
+            display: none;
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        @media (max-width: 480px) {
+            .register-container {
+                margin: 15px 15px;
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="header-container">
+        <a href="index.html" class="header-logo">
+            <span class="logo-icon"><i class="fas fa-quran"></i></span>
+            <span class="logo-text">Coran Traduction</span>
+        </a>
+        <nav class="header-nav" id="headerNav">
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="reader.html" class="nav-link"><i class="fas fa-book-open"></i> Lire le Coran</a></li>
+                <li><a href="premium.html" class="nav-link premium-link"><i class="fas fa-crown"></i> Premium</a></li>
+                <li><a href="donate.html" class="nav-link donate-link"><i class="fas fa-heart"></i> Don</a></li>
+                <li><a href="login.html" class="nav-link"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                <li><a href="register.html" class="nav-link btn-register active"><i class="fas fa-user-plus"></i> Inscription</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+    </div>
+</header>
+<main>
+    <div class="register-container">
+        <h1><i class="fas fa-user-plus" style="color: #2ecc71;"></i> Inscription</h1>
+        <p class="subtitle">Créez votre compte gratuitement</p>
+        <div id="errorMessage" class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="errorText">Erreur</span>
+        </div>
+        <div id="successMessage" class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <span id="successText">Inscription réussie !</span>
+        </div>
+        <form id="registerForm" onsubmit="return handleRegister(event)">
+            <div class="form-group">
+                <label for="fullname"><i class="fas fa-user"></i> Nom complet</label>
+                <input type="text" id="fullname" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" placeholder="exemple@email.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Mot de passe</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Minimum 6 caractères" required>
+                    <button type="button" class="toggle-password" id="togglePassword" aria-label="Afficher le mot de passe">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="password-requirements">
+                    <li id="lengthReq"><i class="fas fa-circle"></i> Au moins 6 caractères</li>
+                    <li id="letterReq"><i class="fas fa-circle"></i> Au moins une lettre</li>
+                    <li id="numberReq"><i class="fas fa-circle"></i> Au moins un chiffre</li>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword"><i class="fas fa-check-circle"></i> Confirmer le mot de passe</label>
+                <div class="password-wrapper">
+                    <input type="password" id="confirmPassword" placeholder="Confirmez" required>
+                    <button type="button" class="toggle-password" id="toggleConfirmPassword" aria-label="Afficher le mot de passe">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div id="passwordMatchError" class="password-match-error">
+                    <i class="fas fa-times-circle"></i> Les mots de passe ne correspondent pas
+                </div>
+            </div>
+            <button type="submit" class="btn-register" id="registerBtn">
+                <i class="fas fa-user-plus"></i> S'inscrire
+            </button>
+        </form>
+        <div class="login-link">
+            Déjà un compte ? <a href="login.html">Connectez-vous</a>
+        </div>
+    </div>
+</main>
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4><i class="fas fa-quran"></i> Coran Traduction</h4>
+                <p>Traduction du Saint Coran en 70 langues.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="reader.html"><i class="fas fa-book-open"></i> Lire le Coran</a></li>
+                    <li><a href="premium.html"><i class="fas fa-crown"></i> Premium</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Coran Traduction. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+<script>
+    // Menu mobile
+    document.getElementById('menuToggle')?.addEventListener('click', function() {
+        const nav = document.querySelector('.header-nav');
+        if (nav) nav.classList.toggle('active');
+    });
+    // Fonctionnalité "Voir le mot de passe" pour le champ principal
+    document.getElementById('togglePassword')?.addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const icon = this.querySelector('i');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.className = 'fas fa-eye-slash';
+        } else {
+            passwordInput.type = 'password';
+            icon.className = 'fas fa-eye';
+        }
+    });
+    // Fonctionnalité "Voir le mot de passe" pour la confirmation
+    document.getElementById('toggleConfirmPassword')?.addEventListener('click', function() {
+        const confirmInput = document.getElementById('confirmPassword');
+        const icon = this.querySelector('i');
+        if (confirmInput.type === 'password') {
+            confirmInput.type = 'text';
+            icon.className = 'fas fa-eye-slash';
+        } else {
+            confirmInput.type = 'password';
+            icon.className = 'fas fa-eye';
+        }
+    });
+    // Vérification de la force du mot de passe
+    document.getElementById('password')?.addEventListener('input', function() {
+        const password = this.value;
+        const lengthReq = document.getElementById('lengthReq');
+        const letterReq = document.getElementById('letterReq');
+        const numberReq = document.getElementById('numberReq');
+        const confirmInput = document.getElementById('confirmPassword');
+        const matchError = document.getElementById('passwordMatchError');
+        // Vérifier la longueur
+        if (password.length >= 6) {
+            lengthReq.className = 'valid';
+            lengthReq.innerHTML = '<i class="fas fa-check-circle"></i> Au moins 6 caractères';
+        } else {
+            lengthReq.className = 'invalid';
+            lengthReq.innerHTML = '<i class="fas fa-circle"></i> Au moins 6 caractères';
+        }
+        // Vérifier la présence d'une lettre
+        if (/[a-zA-Z]/.test(password)) {
+            letterReq.className = 'valid';
+            letterReq.innerHTML = '<i class="fas fa-check-circle"></i> Au moins une lettre';
+        } else {
+            letterReq.className = 'invalid';
+            letterReq.innerHTML = '<i class="fas fa-circle"></i> Au moins une lettre';
+        }
+        // Vérifier la présence d'un chiffre
+        if (/\d/.test(password)) {
+            numberReq.className = 'valid';
+            numberReq.innerHTML = '<i class="fas fa-check-circle"></i> Au moins un chiffre';
+        } else {
+            numberReq.className = 'invalid';
+            numberReq.innerHTML = '<i class="fas fa-circle"></i> Au moins un chiffre';
+        }
+        // Vérifier la correspondance avec la confirmation
+        if (confirmInput.value && password !== confirmInput.value) {
+            matchError.style.display = 'block';
+        } else {
+            matchError.style.display = 'none';
+        }
+    });
+    // Vérification de la confirmation du mot de passe
+    document.getElementById('confirmPassword')?.addEventListener('input', function() {
+        const password = document.getElementById('password').value;
+        const confirm = this.value;
+        const matchError = document.getElementById('passwordMatchError');
+        if (password && confirm && password !== confirm) {
+            matchError.style.display = 'block';
+        } else {
+            matchError.style.display = 'none';
+        }
+    });
+    // Gestion de l'inscription
+    function handleRegister(event) {
+        event.preventDefault();
+        const fullname = document.getElementById('fullname').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        const successMessage = document.getElementById('successMessage');
+        const registerBtn = document.getElementById('registerBtn');
+        // Cacher les messages précédents
+        errorMessage.style.display = 'none';
+        successMessage.style.display = 'none';
+        // Valider les champs
+        if (!fullname || !email || !password || !confirmPassword) {
+            errorText.textContent = 'Veuillez remplir tous les champs';
+            errorMessage.style.display = 'block';
+            return false;
+        }
+        // Validation du nom
+        if (fullname.length < 2) {
+            errorText.textContent = 'Le nom doit contenir au moins 2 caractères';
+            errorMessage.style.display = 'block';
+            return false;
+        }
+        // Validation de l'email
+        if (!email.includes('@') || !email.includes('.')) {
+            errorText.textContent = 'Veuillez entrer un email valide';
+            errorMessage.style.display = 'block';
+            return false;
+        }
+        // Validation du mot de passe
+        if (password.length < 6) {
+            errorText.textContent = 'Le mot de passe doit contenir au moins 6 caractères';
+            errorMessage.style.display = 'block';
+            return false;
+        }
+        if (!/[a-zA-Z]/.test(password)) {
+            errorText.textContent = 'Le mot de passe doit contenir au moins une lettre';
+            errorMessage.style.display = 'block';
+            return false;
+        }
+        if (!/\d/.test(password)) {
+            errorText.textContent = 'Le mot de passe doit contenir au moins un chiffre';
+            errorMessage.style.display = 'block';
+            return false;
+        }
+        // Vérifier la correspondance des mots de passe
+        if (password !== confirmPassword) {
+            errorText.textContent = 'Les mots de passe ne correspondent pas';
+            errorMessage.style.display = 'block';
+            return false;
+        }
+        // Simuler l'inscription (à remplacer par une vraie API)
+        registerBtn.disabled = true;
+        registerBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Inscription en cours...';
+        setTimeout(function() {
+            successMessage.querySelector('span').textContent = ' Inscription réussie ! Bienvenue ' + fullname;
+            successMessage.style.display = 'block';
+            registerBtn.disabled = false;
+            registerBtn.innerHTML = '<i class="fas fa-user-plus"></i> S\'inscrire';
+            // Rediriger après 2 secondes
+            setTimeout(function() {
+                window.location.href = 'login.html';
+            }, 2000);
+        }, 1500);
+        return true;
+    }
+    console.log(' Page d\'inscription chargée');
+    console.log(' Vérification de la force du mot de passe activée');
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Coran Traduction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .auth-page { max-width: 420px; margin: 60px auto; padding: 20px; }
+        .auth-card { background: white; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); padding: 40px; }
+        .auth-card h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; }
+        .auth-card h1 i { color: #2ecc71; margin-right: 10px; }
+        .auth-card .subtitle { text-align: center; color: #888; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; color: #2c3e50; margin-bottom: 5px; }
+        .form-group input { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; transition: all 0.3s; }
+        .form-group input:focus { border-color: #2ecc71; outline: none; }
+        .btn-auth { width: 100%; padding: 14px; background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .btn-auth:hover { transform: scale(1.02); box-shadow: 0 5px 20px rgba(46,204,113,0.3); }
+        .auth-links { text-align: center; margin-top: 20px; color: #888; }
+        .auth-links a { color: #3498db; text-decoration: none; }
+        .auth-links a:hover { text-decoration: underline; }
+        .error-msg { color: #e74c3c; text-align: center; margin-top: 15px; display: none; }
+        .success-msg { color: #27ae60; text-align: center; margin-top: 15px; display: none; }
+        
+        /* Header/footer styles */
+        .main-header { background: linear-gradient(135deg, #1a1a2e, #2c3e50); padding: 0; box-shadow: 0 2px 20px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 1.3rem; }
+        .header-logo .logo-text { background: linear-gradient(90deg, #3498db, #2ecc71); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 3px; }
+        @media (max-width: 768px) { .menu-toggle { display: flex; } .header-nav { display: none; } }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="header-logo">
+                <span class="logo-icon"><i class="fas fa-quran"></i></span>
+                <span class="logo-text">Coran Traduction</span>
+            </a>
+        </div>
+    </header>
+    
+    <main>
+        <div class="auth-page">
+            <div class="auth-card">
+                <h1><i class="fas fa-user-plus"></i> Inscription</h1>
+                <p class="subtitle">Créez votre compte gratuitement</p>
+                <form id="registerForm" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nom complet</label>
+                        <input type="text" id="name" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" placeholder="exemple@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Mot de passe</label>
+                        <input type="password" id="password" placeholder="Minimum 6 caractères" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-check-circle"></i> Confirmer le mot de passe</label>
+                        <input type="password" id="confirm" placeholder="Confirmez" required>
+                    </div>
+                    <button type="submit" class="btn-auth"><i class="fas fa-user-plus"></i> S'inscrire</button>
+                    <div class="error-msg" id="errorMsg"><i class="fas fa-exclamation-circle"></i> Erreur</div>
+                    <div class="success-msg" id="successMsg"><i class="fas fa-check-circle"></i> Succès</div>
+                </form>
+                <div class="auth-links">
+                    <p>Déjà un compte ? <a href="login.html">Connectez-vous</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="js/auth.js"></script>
+    <script>
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm').value;
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            
+            if (name.length < 2) { 
+                errorMsg.textContent = '❌ Nom invalide (minimum 2 caractères).'; 
+                errorMsg.style.display = 'block'; 
+                return; 
+            }
+            if (password !== confirm) { 
+                errorMsg.textContent = '❌ Les mots de passe ne correspondent pas.'; 
+                errorMsg.style.display = 'block'; 
+                return; 
+            }
+            if (password.length < 6) { 
+                errorMsg.textContent = '❌ Mot de passe trop court (minimum 6 caractères).'; 
+                errorMsg.style.display = 'block'; 
+                return; 
+            }
+            
+            if (typeof registerUser === 'function') {
+                const result = registerUser(email, password, name);
+                if (result.success) {
+                    successMsg.textContent = '✅ ' + result.message + ' Redirection...';
+                    successMsg.style.display = 'block';
+                    setTimeout(() => { window.location.href = 'login.html'; }, 2000);
+                } else {
+                    errorMsg.textContent = '❌ ' + result.message;
+                    errorMsg.style.display = 'block';
+                }
+            } else {
+                // Fallback
+                successMsg.textContent = '✅ Compte créé avec succès ! Redirection vers la connexion...';
+                successMsg.style.display = 'block';
+                setTimeout(() => { window.location.href = 'login.html'; }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Coran Traduction</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .faq-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .faq-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .faq-header h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .faq-header h1 i {
+            color: #3498db;
+        }
+        .faq-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+        .faq-question h3 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .faq-question h3 i {
+            color: #3498db;
+            margin-right: 12px;
+            width: 20px;
+        }
+        .faq-question .toggle-icon {
+            color: #3498db;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        .faq-question .toggle-icon.open {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 15px 0 5px 35px;
+            color: #555;
+            line-height: 1.8;
+            display: none;
+        }
+        .faq-answer.open {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        .faq-answer ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .faq-answer ul li {
+            padding: 3px 0;
+        }
+        .faq-answer .highlight {
+            color: #3498db;
+            font-weight: 600;
+        }
+        .faq-answer .premium-badge {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 600px) {
+            .faq-container { margin: 15px; padding: 20px; }
+            .faq-header h1 { font-size: 1.5rem; }
+            .faq-question h3 { font-size: 1rem; }
+            .faq-answer { padding-left: 20px; }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="header-container">
+        <a href="index.html" class="header-logo">
+            <span class="logo-icon"><i class="fas fa-quran"></i></span>
+            <span class="logo-text">Coran Traduction</span>
+        </a>
+        <nav class="header-nav" id="headerNav">
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="reader.html" class="nav-link"><i class="fas fa-book-open"></i> Lire le Coran</a></li>
+                <li><a href="premium.html" class="nav-link premium-link"><i class="fas fa-crown"></i> Premium</a></li>
+                <li><a href="donate.html" class="nav-link donate-link"><i class="fas fa-heart"></i> Don</a></li>
+                <li><a href="login.html" class="nav-link"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                <li><a href="register.html" class="nav-link btn-register"><i class="fas fa-user-plus"></i> Inscription</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+    </div>
+</header>
+<main>
+    <div class="faq-container">
+        <div class="faq-header">
+            <h1><i class="fas fa-question-circle"></i> FAQ</h1>
+            <p>Questions fréquemment posées</p>
+        </div>
+        <!-- Question 1 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3><i class="fas fa-language"></i> Quelles langues sont disponibles ?</h3>
+                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Notre plateforme propose actuellement <span class="highlight">70 langues</span> de traduction du Coran :</p>
+                <ul>
+                    <li><strong>Langues principales :</strong> arabe, anglais, français, espagnol, allemand, italien, portugais, russe</li>
+                    <li><strong>Langues asiatiques :</strong> chinois, japonais, coréen, hindi, indonésien, malais, thaï, vietnamien</li>
+                    <li><strong>Langues moyen-orientales :</strong> persan, ourdou, turc, hébreu</li>
+                    <li><strong>Autres langues :</strong> néerlandais, suédois, polonais, grec, roumain, bulgare, serbe, croate, albanais, swahili, amharique, yoruba, igbo, haoussa, zoulou, somali et bien d'autres</li>
+                </ul>
+                <p style="margin-top: 10px;">De nouvelles langues sont ajoutées régulièrement.</p>
+            </div>
+        </div>
+        <!-- Question 2 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3><i class="fas fa-gratipay"></i> L'application est-elle gratuite ?</h3>
+                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Oui, la version de base est <span class="highlight">100% gratuite</span> et accessible à tous !</p>
+                <p>Une version <span class="premium-badge"><i class="fas fa-crown"></i> Premium</span> est disponible pour :</p>
+                <ul>
+                    <li> Supprimer les publicités</li>
+                    <li> Accéder </li>
+                    <li> Comparer plusieurs traductions</li>
+                    <li> Soutenir le développement du projet</li>
+                </ul>
+                <p style="margin-top: 10px;">L'abonnement Premium est à <span class="highlight">5€/mois</span>, annulable à tout moment.</p>
+            </div>
+        </div>
+        <!-- Question 3 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3><i class="fas fa-headphones"></i> Comment  ?</h3>
+                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>La fonctionnalité audio n'est pas disponible dans la version actuelle.</p>
+                <p>Nous travaillons sur l'intégration de la  pour une prochaine mise à jour.</p>
+                <p style="margin-top: 10px; color: #666; font-style: italic;">
+                    <i class="fas fa-info-circle"></i> La version Premium proposera également l'audio en haute qualité.
+                </p>
+            </div>
+        </div>
+        <!-- Question 4 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3><i class="fas fa-crown"></i> Qu'est-ce que la version Premium ?</h3>
+                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>La version <span class="premium-badge"><i class="fas fa-crown"></i> Premium</span> vous offre des fonctionnalités exclusives :</p>
+                <ul>
+                    <li> <strong>Sans publicité</strong> - Lecture sans interruption</li>
+                    <li> <strong></strong> - </li>
+                    <li> <strong>Traductions multiples</strong> - Comparez plusieurs traductions simultanément</li>
+                    <li> <strong>Soutien au projet</strong> - Aidez-nous à améliorer la plateforme</li>
+                </ul>
+                <p style="margin-top: 10px;">Abonnement : <span class="highlight">5€/mois</span> - Annulation à tout moment.</p>
+            </div>
+        </div>
+        <!-- Question 5 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3><i class="fas fa-sync"></i> Comment sont faites les traductions ?</h3>
+                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Les traductions sont générées à la demande grâce à l'<span class="highlight">API DeepSeek</span>.</p>
+                <ul>
+                    <li> Traductions en temps réel</li>
+                    <li> 70 langues disponibles</li>
+                    <li> Qualité professionnelle</li>
+                    <li> Traductions mises en cache pour un accès rapide</li>
+                </ul>
+                <p style="margin-top: 10px;">Les traductions sont stockées localement dans votre navigateur pour un accès instantané.</p>
+            </div>
+        </div>
+        <!-- Question 6 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3><i class="fas fa-mobile-alt"></i> Est-ce compatible avec les mobiles ?</h3>
+                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Oui ! Le site est entièrement <span class="highlight">responsive</span> et s'adapte à tous les appareils :</p>
+                <ul>
+                    <li> Smartphones (iOS, Android)</li>
+                    <li> Ordinateurs (Windows, Mac, Linux)</li>
+                    <li> Tablettes</li>
+                </ul>
+                <p style="margin-top: 10px;">Aucune installation nécessaire, il suffit d'ouvrir le site dans votre navigateur.</p>
+            </div>
+        </div>
+        <!-- Question 7 -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3><i class="fas fa-heart"></i> Comment puis-je soutenir le projet ?</h3>
+                <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Vous pouvez soutenir le projet de plusieurs manières :</p>
+                <ul>
+                    <li> <strong>Faire un don</strong> - via PayPal, carte bancaire ou M-Pesa</li>
+                    <li> <strong>S'abonner à la version Premium</strong> - 5€/mois</li>
+                    <li> <strong>Partager le site</strong> - autour de vous</li>
+                    <li> <strong>Signaler les bugs</strong> - pour nous aider à améliorer</li>
+                </ul>
+                <p style="margin-top: 10px;">
+                    <a href="donate.html" style="color: #e74c3c; font-weight: 600;">
+                        <i class="fas fa-heart"></i> Faire un don maintenant
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4><i class="fas fa-quran"></i> Coran Traduction</h4>
+                <p>Traduction du Saint Coran en 70 langues.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="reader.html"><i class="fas fa-book-open"></i> Lire le Coran</a></li>
+                    <li><a href="premium.html"><i class="fas fa-crown"></i> Premium</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Coran Traduction. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+<script>
+    // Menu mobile
+    document.getElementById('menuToggle')?.addEventListener('click', function() {
+        const nav = document.querySelector('.header-nav');
+        if (nav) nav.classList.toggle('active');
+    });
+    // Toggle FAQ
+    function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector('.toggle-icon i');
+        if (answer.classList.contains('open')) {
+            answer.classList.remove('open');
+            icon.className = 'fas fa-chevron-down';
+        } else {
+            // Fermer les autres réponses
+            document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.toggle-icon i').forEach(i => i.className = 'fas fa-chevron-down');
+            answer.classList.add('open');
+            icon.className = 'fas fa-chevron-up';
+        }
+    }
+    console.log(' Page FAQ chargée');
+    console.log(' 7 questions disponibles');
+</script>
+</body>
+</html>
+
+
+

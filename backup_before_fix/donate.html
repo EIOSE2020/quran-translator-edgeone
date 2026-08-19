@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faire un don - Coran Traduction</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Styles de la page don */
+        .donate-container { max-width: 800px; margin: 40px auto; padding: 20px; }
+        .donate-header { text-align: center; padding: 40px 0; }
+        .donate-header h1 { font-size: 2.5rem; color: #2c3e50; }
+        .donate-header p { font-size: 1.1rem; color: #666; }
+        .donate-card { background: white; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); padding: 40px; margin: 20px 0; transition: all 0.3s; }
+        .donate-card:hover { box-shadow: 0 12px 60px rgba(0,0,0,0.15); transform: translateY(-2px); }
+        .donate-card .icon { font-size: 3rem; display: block; text-align: center; margin-bottom: 15px; color: #e74c3c; }
+        .donate-card h2 { text-align: center; color: #2c3e50; margin-bottom: 10px; }
+        .donate-card p { text-align: center; color: #666; margin-bottom: 20px; }
+        .donate-amounts { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 20px 0; }
+        .donate-amounts .amount-btn { padding: 12px 25px; border: 2px solid #e0e0e0; border-radius: 30px; background: white; font-size: 1.1rem; font-weight: 600; color: #2c3e50; cursor: pointer; transition: all 0.3s; }
+        .donate-amounts .amount-btn:hover, .donate-amounts .amount-btn.active { border-color: #3498db; background: #3498db; color: white; }
+        .donate-amounts .amount-btn.custom { border-style: dashed; }
+        #customAmountContainer { display: none; margin: 15px 0; }
+        #customAmountContainer input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; }
+        .donate-btn { display: inline-block; width: 100%; padding: 16px; border: none; border-radius: 30px; font-size: 1.2rem; font-weight: 600; cursor: pointer; transition: all 0.3s; text-align: center; text-decoration: none; color: white; }
+        .donate-btn:hover { transform: scale(1.02); opacity: 0.95; }
+        .donate-btn.paypal { background: linear-gradient(135deg, #0070ba, #003087); }
+        .donate-btn.stripe { background: linear-gradient(135deg, #635bff, #3b30b0); }
+        .donate-btn.mpesa { background: linear-gradient(135deg, #e67e22, #d35400); }
+        .payment-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 30px 0; }
+        .payment-method { background: #f8f9fa; border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; cursor: pointer; }
+        .payment-method:hover { background: #e9ecef; transform: translateY(-3px); }
+        .payment-method .pm-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .payment-method .pm-name { font-weight: 600; color: #2c3e50; }
+        .payment-method .pm-desc { font-size: 0.85rem; color: #888; }
+        .donate-info { background: #f8f9fa; border-radius: 12px; padding: 20px; margin-top: 30px; text-align: center; color: #666; font-size: 0.9rem; }
+
+        /* Styles communs (header/footer) - reproduits ici pour autonomie */
+        .main-header { background: linear-gradient(135deg, #1a1a2e, #2c3e50); padding: 0; box-shadow: 0 2px 20px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 1.3rem; }
+        .header-logo .logo-text { background: linear-gradient(90deg, #3498db, #2ecc71); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-menu { display: flex; list-style: none; margin: 0; padding: 0; gap: 5px; align-items: center; flex-wrap: wrap; }
+        .nav-link { display: flex; align-items: center; gap: 6px; padding: 8px 16px; color: rgba(255,255,255,0.8); text-decoration: none; border-radius: 8px; transition: all 0.3s; font-size: 0.95rem; }
+        .nav-link:hover { color: white; background: rgba(255,255,255,0.1); }
+        .nav-link.active { color: white; background: rgba(52,152,219,0.3); }
+        .premium-link { background: linear-gradient(135deg, #f39c12, #e67e22); color: white !important; }
+        .btn-register { background: rgba(46,204,113,0.2); border: 2px solid #2ecc71; color: #2ecc71 !important; }
+        .btn-register:hover { background: #2ecc71; color: white !important; }
+        .donate-link { color: #f1c40f !important; }
+        .donate-link:hover { background: rgba(241,196,15,0.2) !important; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: white; border-radius: 3px; }
+
+        .main-footer { background: linear-gradient(135deg, #1a1a2e, #2c3e50); color: #ecf0f1; padding: 60px 0 0; margin-top: 60px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: #fff; font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid rgba(52,152,219,0.3); }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #bdc3c7; text-decoration: none; transition: all 0.3s; }
+        .footer-links a:hover { color: #3498db; }
+        .footer-social { display: flex; gap: 12px; }
+        .footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; color: #ecf0f1; text-decoration: none; transition: all 0.3s; }
+        .footer-social a:hover { background: #3498db; transform: translateY(-3px); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; text-align: center; color: #95a5a6; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            .header-nav { display: none; }
+            .nav-menu { flex-direction: column; align-items: center; }
+            .nav-menu li { width: 100%; text-align: center; }
+            .nav-link { justify-content: center; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .donate-card { padding: 20px; }
+            .donate-amounts .amount-btn { padding: 10px 18px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <a href="index.html" class="header-logo">
+            <span class="logo-icon"><i class="fas fa-quran"></i></span>
+            <span class="logo-text">Coran Traduction</span>
+        </a>
+        <nav class="header-nav">
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="index.html" class="nav-link" onclick="loadSurah(1)"><i class="fas fa-book-open"></i> Lire le Coran</a></li>
+                <li><a href="premium.html" class="nav-link premium-link"><i class="fas fa-crown"></i> Premium</a></li>
+                <li><a href="donate.html" class="nav-link donate-link active"><i class="fas fa-heart"></i> Don</a></li>
+                <li><a href="login.html" class="nav-link"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                <li><a href="register.html" class="nav-link btn-register"><i class="fas fa-user-plus"></i> Inscription</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+    </div>
+</header>
+
+<main>
+    <div class="donate-container">
+        <div class="donate-header">
+            <h1><i class="fas fa-heart" style="color:#e74c3c;"></i> Soutenez le projet</h1>
+            <p>Votre don nous aide à maintenir et améliorer cette plateforme de traduction du Coran.</p>
+        </div>
+
+        <div class="donate-card">
+            <span class="icon"><i class="fas fa-hand-holding-heart"></i></span>
+            <h2>Faire un don</h2>
+            <p>Choisissez un montant et une méthode de paiement.</p>
+
+            <div class="donate-amounts">
+                <button class="amount-btn" data-amount="5">5 €</button>
+                <button class="amount-btn active" data-amount="10">10 €</button>
+                <button class="amount-btn" data-amount="25">25 €</button>
+                <button class="amount-btn" data-amount="50">50 €</button>
+                <button class="amount-btn custom" data-amount="custom"><i class="fas fa-pencil-alt"></i> Autre</button>
+            </div>
+
+            <div id="customAmountContainer">
+                <input type="number" id="customAmount" placeholder="Entrez un montant" min="1" />
+            </div>
+
+            <h3 style="text-align:center; margin: 20px 0 10px;"><i class="fas fa-credit-card"></i> Choisissez votre moyen de paiement</h3>
+            <div class="payment-methods">
+                <div class="payment-method" onclick="processDonation('paypal')">
+                    <div class="pm-icon"><i class="fab fa-paypal" style="color:#003087;"></i></div>
+                    <div class="pm-name">PayPal</div>
+                    <div class="pm-desc">Paiement sécurisé</div>
+                </div>
+                <div class="payment-method" onclick="processDonation('stripe')">
+                    <div class="pm-icon"><i class="fas fa-credit-card" style="color:#635bff;"></i></div>
+                    <div class="pm-name">Carte bancaire</div>
+                    <div class="pm-desc">Visa, Mastercard, Amex</div>
+                </div>
+                <div class="payment-method" onclick="processDonation('mpesa')">
+                    <div class="pm-icon"><i class="fas fa-mobile-alt" style="color:#e67e22;"></i></div>
+                    <div class="pm-name">M-Pesa</div>
+                    <div class="pm-desc">Paiement mobile</div>
+                </div>
+            </div>
+
+            <div style="display:grid; gap:12px; margin-top:20px;">
+                <a href="#" class="donate-btn paypal" onclick="event.preventDefault(); processDonation('paypal')"><i class="fab fa-paypal"></i> Payer avec PayPal</a>
+                <a href="#" class="donate-btn stripe" onclick="event.preventDefault(); processDonation('stripe')"><i class="fas fa-credit-card"></i> Payer par carte bancaire</a>
+                <a href="#" class="donate-btn mpesa" onclick="event.preventDefault(); processDonation('mpesa')"><i class="fas fa-mobile-alt"></i> Payer avec M-Pesa</a>
+            </div>
+        </div>
+
+        <div class="donate-info">
+            <i class="fas fa-lock" style="color:#3498db;"></i> Paiement sécurisé &bull;
+            <i class="fas fa-receipt" style="color:#2ecc71;"></i> Reçu envoyé par email &bull;
+            <i class="fas fa-heart" style="color:#e74c3c;"></i> Merci pour votre soutien !
+        </div>
+
+        <div class="donate-card" style="background: linear-gradient(135deg, #1a1a2e, #2c3e50); color:white;">
+            <h2 style="color:white;"><i class="fas fa-rocket"></i> Impact de votre don</h2>
+            <p style="color:#ccc;">Votre contribution permet de :</p>
+            <ul style="color:#ddd; line-height:2; list-style:none; padding:0; text-align:center;">
+                <li><i class="fas fa-check-circle" style="color:#2ecc71;"></i> Maintenir le site en ligne</li>
+                <li><i class="fas fa-check-circle" style="color:#2ecc71;"></i> Ajouter de nouvelles langues</li>
+                <li><i class="fas fa-check-circle" style="color:#2ecc71;"></i> Améliorer la qualité audio</li>
+                <li><i class="fas fa-check-circle" style="color:#2ecc71;"></i> Financer les serveurs et la bande passante</li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4><i class="fas fa-quran"></i> Coran Traduction</h4>
+                <p>Traduction du Saint Coran en 15 langues.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="index.html" onclick="loadSurah(1)"><i class="fas fa-book-open"></i> Lire le Coran</a></li>
+                    <li><a href="premium.html"><i class="fas fa-crown"></i> Premium</a></li>
+                    <li><a href="donate.html" style="color:#f1c40f;"><i class="fas fa-heart"></i> Faire un don</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Informations</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> À propos</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Légal</h4>
+                <ul class="footer-links">
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> Conditions</a></li>
+                    <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Confidentialité</a></li>
+                    <li><a href="refund.html"><i class="fas fa-undo-alt"></i> Remboursement</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Coran Traduction. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Gestion des montants
+    const amountBtns = document.querySelectorAll('.amount-btn');
+    const customContainer = document.getElementById('customAmountContainer');
+    const customInput = document.getElementById('customAmount');
+    let selectedAmount = 10;
+
+    amountBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            amountBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            if (this.dataset.amount === 'custom') {
+                customContainer.style.display = 'block';
+                selectedAmount = 0;
+            } else {
+                customContainer.style.display = 'none';
+                selectedAmount = parseInt(this.dataset.amount);
+            }
+        });
+    });
+
+    // Traitement du don
+    function processDonation(method) {
+        let amount = selectedAmount;
+        if (amount === 0) {
+            const val = parseFloat(customInput.value);
+            if (isNaN(val) || val <= 0) {
+                alert('Veuillez entrer un montant valide.');
+                return;
+            }
+            amount = val;
+        }
+
+        const methodNames = { paypal: 'PayPal', stripe: 'carte bancaire', mpesa: 'M-Pesa' };
+        alert('✅ Redirection vers ' + methodNames[method] + '...\n\nMontant : ' + amount + ' €\n\nMerci pour votre générosité ! 🙏');
+        
+        // Redirection vers les pages de paiement (à configurer)
+        // const urls = {
+        //     paypal: `https://www.paypal.com/donate/?business=EMAIL_PAYPAL&amount=${amount}&currency_code=EUR`,
+        //     stripe: `https://donate.stripe.com/LIEN_STRIPE`,
+        //     mpesa: `https://mpesa.example.com/donate?amount=${amount}`
+        // };
+        // window.location.href = urls[method];
+    }
+
+    // Menu mobile
+    document.getElementById('menuToggle')?.addEventListener('click', function() {
+        const nav = document.querySelector('.header-nav');
+        if (nav) {
+            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+        }
+    });
+
+    // Fonction de navigation
+    function loadSurah(n) {
+        window.location.href = 'index.html?load=' + n;
+    }
+
+    window.loadSurah = loadSurah;
+    window.processDonation = processDonation;
+</script>
+
+</body>
+</html>

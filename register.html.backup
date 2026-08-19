@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Coran Traduction</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-top: 20px;
+            border-top: 2px solid #f0f0f0;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .page-navigation .nav-btn {
+            padding: 10px 25px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #2c3e50;
+        }
+        .page-navigation .nav-btn:hover {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52,152,219,0.3);
+        }
+        @media (max-width: 768px) {
+            .page-navigation {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        .auth-container {
+            max-width: 450px;
+            margin: 60px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .auth-container .logo {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .auth-container h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        .auth-container .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .auth-container .form-group {
+            margin-bottom: 20px;
+        }
+        .auth-container label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        .auth-container input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+        .auth-container input:focus {
+            border-color: #3498db;
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+        }
+        .auth-container .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .auth-container .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(52,152,219,0.3);
+        }
+        .auth-container .password-strength {
+            margin-top: 8px;
+            height: 4px;
+            border-radius: 2px;
+            background: #e0e0e0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .auth-container .password-strength .bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+        .auth-container .password-strength-text {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        .auth-container .auth-footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+        .auth-container .auth-footer a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .auth-container .terms {
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .auth-container .terms a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .auth-container .back-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .auth-container .back-link a {
+            color: #888;
+            text-decoration: none;
+        }
+        .auth-container .back-link a:hover {
+            color: #3498db;
+        }
+        @media (max-width: 480px) {
+            .auth-container {
+                margin: 20px;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="auth-container">
+            <div class="logo"></div>
+            <h1>Créer un compte</h1>
+            <p class="subtitle">Rejoignez-nous pour lire le Coran en 36 langues</p>
+            
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required placeholder="exemple@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="password" required placeholder="Minimum 8 caractères" minlength="8">
+                    <div class="password-strength">
+                        <div class="bar" id="passwordStrength"></div>
+                    </div>
+                    <div class="password-strength-text" id="passwordStrengthText"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Confirmer le mot de passe</label>
+                    <input type="password" id="confirmPassword" required placeholder="Confirmez votre mot de passe" minlength="8">
+                </div>
+                
+                <button type="submit" class="btn-submit">S'inscrire</button>
+                
+                <div class="terms">
+                    En créant un compte, vous acceptez nos 
+                    <a href="terms.html">Conditions d'utilisation</a> et notre 
+                    <a href="privacy.html">Politique de confidentialité</a>
+                </div>
+                
+                <div class="auth-footer">
+                    Déjà un compte ? <a href="login.html">Se connecter</a>
+                </div>
+                
+                <div class="back-link">
+                    <a href="index.html"> Retour à l'accueil</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Vérification de la force du mot de passe
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.getElementById('passwordStrength');
+            const strengthText = document.getElementById('passwordStrengthText');
+            
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/)) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+            
+            const percentage = (strength / 5) * 100;
+            strengthBar.style.width = percentage + '%';
+            
+            const colors = ['#e74c3c', '#e67e22', '#f39c12', '#2ecc71', '#27ae60'];
+            const texts = ['Très faible', 'Faible', 'Moyen', 'Fort', 'Très fort'];
+            const index = Math.min(Math.floor(strength), 4);
+            
+            strengthBar.style.background = colors[index];
+            strengthText.textContent = texts[index];
+            strengthText.style.color = colors[index];
+        });
+        
+        function handleRegister(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirm) {
+                alert(' Les mots de passe ne correspondent pas !');
+                return;
+            }
+            
+            if (email && password) {
+                alert(' Inscription réussie !\nEmail: ' + email);
+                // Rediriger vers la page de connexion
+                // window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>
+

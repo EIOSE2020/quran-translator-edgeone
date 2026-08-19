@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version Premium - Coran Traduction</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .premium-container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .premium-header { text-align: center; margin-bottom: 40px; }
+        .premium-header h1 { font-size: 2.5rem; color: #2c3e50; }
+        .premium-header p { color: #666; font-size: 1.1rem; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin: 40px 0; }
+        .pricing-card { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s; }
+        .pricing-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .pricing-card.featured { border: 2px solid #f39c12; background: linear-gradient(135deg, #fff9f0, #fff); }
+        .pricing-card .price { font-size: 2.5rem; font-weight: bold; color: #2c3e50; }
+        .pricing-card .price span { font-size: 1rem; color: #666; }
+        .pricing-card ul { list-style: none; padding: 0; margin: 20px 0; }
+        .pricing-card ul li { padding: 8px 0; color: #555; border-bottom: 1px solid #eee; }
+        .pricing-card ul li:last-child { border-bottom: none; }
+        .pricing-card ul li i { margin-right: 10px; }
+        .btn-premium { display: inline-block; padding: 12px 40px; background: linear-gradient(135deg, #f39c12, #e67e22); color: white; border: none; border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; }
+        .btn-premium:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(243,156,18,0.3); }
+        .btn-secondary { display: inline-block; padding: 10px 30px; background: #ecf0f1; color: #2c3e50; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; transition: all 0.3s; text-decoration: none; }
+        .btn-secondary:hover { background: #bdc3c7; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+        .feature-item { text-align: center; padding: 20px; background: #f8f9fa; border-radius: 12px; }
+        .feature-item i { font-size: 2.5rem; color: #3498db; margin-bottom: 10px; }
+        .feature-item h4 { color: #2c3e50; margin-bottom: 5px; }
+        .feature-item p { color: #666; font-size: 0.9rem; }
+        .test-mode { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 15px; text-align: center; margin: 20px 0; }
+        @media (max-width: 768px) {
+            .premium-header h1 { font-size: 1.8rem; }
+            .pricing-card .price { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="header-container">
+        <a href="index.html" class="header-logo">
+            <span class="logo-icon"><i class="fas fa-quran"></i></span>
+            <span class="logo-text">Coran Traduction</span>
+        </a>
+        <nav class="header-nav" id="headerNav">
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="reader.html" class="nav-link"><i class="fas fa-book-open"></i> Lire le Coran</a></li>
+                <li><a href="premium.html" class="nav-link premium-link active"><i class="fas fa-crown"></i> Premium</a></li>
+                <li><a href="donate.html" class="nav-link donate-link"><i class="fas fa-heart"></i> Don</a></li>
+                <li><a href="login.html" class="nav-link"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                <li><a href="register.html" class="nav-link btn-register"><i class="fas fa-user-plus"></i> Inscription</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+    </div>
+</header>
+<main class="premium-container">
+    <div class="premium-header">
+        <h1><i class="fas fa-crown" style="color: #f39c12;"></i> Version Premium</h1>
+        <p>Améliorez votre expérience de lecture du Coran</p>
+    </div>
+    <!-- Mode test -->
+    <div class="test-mode">
+        <i class="fas fa-flask"></i> <strong>Mode test activé</strong> - Cette version est gratuite pour le développement.
+        <button id="disablePremiumBtn" class="btn-secondary" style="margin-left: 10px; padding: 5px 15px; font-size: 0.9rem;">
+            Désactiver Premium (test)
+        </button>
+    </div>
+    <!-- Fonctionnalités Premium -->
+    <div class="features-grid">
+        <div class="feature-item">
+            <i class="fas fa-ad"></i>
+            <h4>Sans publicité</h4>
+            <p>Profitez d'une lecture sans interruption</p>
+        </div>
+        <div class="feature-item">
+            <h4></h4>
+            <p></p>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-language"></i>
+            <h4>Traductions multiples</h4>
+            <p>Comparez plusieurs traductions</p>
+        </div>
+    </div>
+    <!-- Offres -->
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <h3>Standard</h3>
+            <div class="price">Gratuit</div>
+            <ul>
+                <li><i class="fas fa-check" style="color: #2ecc71;"></i> 70 langues</li>
+                <li><i class="fas fa-check" style="color: #2ecc71;"></i> Traduction à la demande</li>
+                <li><i class="fas fa-times" style="color: #e74c3c;"></i> Sans publicité</li>
+                <li><i class="fas fa-times" style="color: #e74c3c;"></i> </li>
+            </ul>
+            <a href="reader.html" class="btn-secondary">Commencer</a>
+        </div>
+        <div class="pricing-card featured">
+            <div style="background: #f39c12; color: white; padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem; margin-bottom: 10px;">
+                <i class="fas fa-star"></i> Recommandé
+            </div>
+            <h3>Premium</h3>
+            <div class="price">5$ <span>/ mois</span></div>
+            <ul>
+                <li><i class="fas fa-check" style="color: #2ecc71;"></i> 70 langues</li>
+                <li><i class="fas fa-check" style="color: #2ecc71;"></i> Traduction à la demande</li>
+                <li><i class="fas fa-check" style="color: #2ecc71;"></i> Sans publicité</li>
+                <li><i class="fas fa-check" style="color: #2ecc71;"></i> </li>
+                <li><i class="fas fa-check" style="color: #2ecc71;"></i> Traductions multiples</li>
+            </ul>
+            <button id="subscribeBtn" class="btn-premium">
+                <i class="fas fa-crown"></i> S'abonner maintenant
+            </button>
+            <p style="color: #999; font-size: 0.8rem; margin-top: 10px;">Annulation à tout moment</p>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="index.html" class="btn-secondary"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+    </div>
+</main>
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4><i class="fas fa-quran"></i> Coran Traduction</h4>
+                <p>Traduction du Saint Coran en 70 langues.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="reader.html"><i class="fas fa-book-open"></i> Lire le Coran</a></li>
+                    <li><a href="premium.html"><i class="fas fa-crown"></i> Premium</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Coran Traduction. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+<script>
+    // Menu mobile
+    document.getElementById('menuToggle')?.addEventListener('click', function() {
+        const nav = document.querySelector('.header-nav');
+        if (nav) nav.classList.toggle('active');
+    });
+    // Bouton Premium
+    document.getElementById('subscribeBtn')?.addEventListener('click', function() {
+        alert(' Version Premium\n\n' +
+              'Fonctionnalités premium à venir :\n' +
+              ' Sans publicité\n' +
+              ' \n' +
+              ' \n' +
+              ' Traductions multiples\n\n' +
+              ' 5$ / mois (Paiement sécurisé)');
+    });
+    // Désactiver Premium (test)
+    document.getElementById('disablePremiumBtn')?.addEventListener('click', function() {
+        if (confirm(' Désactiver le mode Premium (test) ?')) {
+            alert(' Mode Premium désactivé\nRetour à la version gratuite');
+            window.location.href = 'reader.html';
+        }
+    });
+</script>
+</body>
+</html>
+
+

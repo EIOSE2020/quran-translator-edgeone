@@ -1,0 +1,17 @@
+{
+  "name": "quran-translator-edgeone",
+  "version": "1.0.0",
+  "description": "Quran translation in 70 languages using DeepSeek API",
+  "main": "api/translate.js",
+  "scripts": {
+    "start": "node api/translate.js",
+    "dev": "node --watch api/translate.js",
+    "build": "echo 'Build completed'",
+    "deploy": "edgeone deploy"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}
