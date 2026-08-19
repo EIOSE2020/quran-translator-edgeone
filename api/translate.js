@@ -1,5 +1,6 @@
 ﻿export default {
     async fetch(request, env) {
+        // Gérer les requêtes OPTIONS pour CORS
         if (request.method === 'OPTIONS') {
             return new Response(null, {
                 headers: {
@@ -10,6 +11,7 @@
             });
         }
 
+        // Accepter uniquement les requêtes POST
         if (request.method !== 'POST') {
             return new Response(JSON.stringify({ error: 'Méthode non autorisée' }), {
                 status: 405,
@@ -20,7 +22,7 @@
         try {
             const body = await request.json();
             const { text, targetLanguage } = body;
-            
+
             if (!text || !targetLanguage) {
                 return new Response(JSON.stringify({
                     error: 'Texte et langue cible requis'
