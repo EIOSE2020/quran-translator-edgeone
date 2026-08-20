@@ -1,9 +1,5 @@
 ﻿{
-  "functions": {
-    "_worker.js": {
-      "runtime": "nodejs22.x"
-    }
-  },
+  "version": 1,
   "routes": [
     {
       "src": "/api/translate",
@@ -12,10 +8,6 @@
     {
       "src": "/api/test",
       "dest": "/_worker.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/"
     }
   ]
 }
