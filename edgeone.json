@@ -1,13 +1,21 @@
 ﻿{
   "functions": {
-    "api/translate.js": {
+    "_worker.js": {
       "runtime": "nodejs22.x"
     }
   },
   "routes": [
     {
       "src": "/api/translate",
-      "dest": "/api/translate.js"
+      "dest": "/_worker.js"
+    },
+    {
+      "src": "/api/test",
+      "dest": "/_worker.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
